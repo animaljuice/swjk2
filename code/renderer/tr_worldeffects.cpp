@@ -375,9 +375,6 @@ public:
 			bool	IsRaining() { return mIsRaining; }
 };
 
-
-
-
 class CMistyFog : public CWorldEffect
 {
 private:

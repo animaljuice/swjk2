@@ -4,6 +4,7 @@
 #include "g_local.h"
 #include "g_functions.h"
 #include "b_local.h"
+#include "../cgame/cg_local.h"
 
 extern team_t TranslateTeamName( const char *name );
 extern	cvar_t	*g_spskill;
@@ -551,10 +552,10 @@ void SP_misc_turret( gentity_t *base )
 {
 	base->s.modelindex = G_ModelIndex( "models/map_objects/imp_mine/turret_canon.glm" );
 	base->s.modelindex2 = G_ModelIndex( "models/map_objects/imp_mine/turret_damage.md3" );
-	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/map_objects/imp_mine/turret_canon.glm", base->s.modelindex );
+	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/map_objects/imp_mine/turret_canon.glm", base->s.modelindex, NULL, NULL, 0, 0);
 	base->s.radius = 80.0f;
 
-	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "Bone_body", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL ); 
+	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "Bone_body", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
 	base->torsoBolt = gi.G2API_AddBolt( &base->ghoul2[base->playerModel], "*flash03" );
 
 	finish_spawning_turret( base );
@@ -708,10 +709,10 @@ void SP_misc_ns_turret( gentity_t *base )
 {
 	base->s.modelindex = G_ModelIndex( "models/map_objects/nar_shaddar/turret/turret.glm" );
 	base->s.modelindex2 = G_ModelIndex( "models/map_objects/imp_mine/turret_damage.md3" ); // FIXME!
-	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/map_objects/nar_shaddar/turret/turret.glm", base->s.modelindex );
+	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/map_objects/nar_shaddar/turret/turret.glm", base->s.modelindex, NULL, NULL, 0, 0);
 	base->s.radius = 80.0f;
 
-	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "Bone_body", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL ); 
+	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "Bone_body", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
 	base->torsoBolt = gi.G2API_AddBolt( &base->ghoul2[base->playerModel], "*flash02" );
 
 	finish_spawning_turret( base );
@@ -1384,14 +1385,14 @@ void SP_PAS( gentity_t *base )
 	base->speed = base->s.angles[YAW];
 
 	base->s.modelindex = G_ModelIndex( "models/items/psgun.glm" );
-	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/items/psgun.glm", base->s.modelindex );
+	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/items/psgun.glm", base->s.modelindex, NULL, NULL, 0, 0);
 	base->s.radius = 30.0f;
 	VectorSet( base->s.modelScale, 1.0f, 1.0f, 1.0f );
 
 	base->rootBone = gi.G2API_GetBoneIndex( &base->ghoul2[base->playerModel], "model_root", qtrue );
-	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "bone_hinge", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL ); 
-	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "bone_gback", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL ); 
-	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "bone_barrel", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL ); 
+	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "bone_hinge", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
+	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "bone_gback", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
+	gi.G2API_SetBoneAngles( &base->ghoul2[base->playerModel], "bone_barrel", vec3_origin, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
 
 	base->torsoBolt = gi.G2API_AddBolt( &base->ghoul2[base->playerModel], "*flash02" );
 
@@ -1662,7 +1663,7 @@ void SP_misc_ion_cannon( gentity_t *base )
 	G_SetOrigin(base, base->s.origin);
 
 	base->s.modelindex = G_ModelIndex( "models/map_objects/imp_mine/ion_cannon.glm" );
-	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/map_objects/imp_mine/ion_cannon.glm", base->s.modelindex );
+	base->playerModel = gi.G2API_InitGhoul2Model( base->ghoul2, "models/map_objects/imp_mine/ion_cannon.glm", base->s.modelindex, NULL, NULL, 0, 0);
 	base->s.radius = 320.0f;
 	VectorSet( base->s.modelScale, 1.0f, 1.0f, 1.0f );
 

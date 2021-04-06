@@ -193,7 +193,7 @@ gentity_t *TossClientItems( gentity_t *self )
 				&& weapon != WP_TRIP_MINE
 				&& weapon != WP_DET_PACK )
 			{
-				gi.G2API_InitGhoul2Model( dropped->ghoul2, item->world_model, G_ModelIndex( item->world_model ));
+				gi.G2API_InitGhoul2Model( dropped->ghoul2, item->world_model, G_ModelIndex( item->world_model ), NULL, NULL, 0, 0);
 				dropped->s.radius = 10;
 			}
 		}
@@ -422,7 +422,7 @@ void G_AlertTeam( gentity_t *victim, gentity_t *attacker, float radius, float so
 	numEnts = gi.EntitiesInBox( mins, maxs, radiusEnts, 128 );
 
 	//Cull this list
-	for ( i = 0; i < numEnts; i++ )
+	for (int i = 0; i < numEnts; i++ )
 	{
 		//Validate clients
 		if ( radiusEnts[i]->client == NULL )
@@ -1848,7 +1848,7 @@ static qboolean G_Dismember( gentity_t *ent, vec3_t point,
 	//G_SetAngles( limb, ent->currentAngles );
 	VectorCopy( newPoint, limb->s.pos.trBase );
 //1) copy the g2 instance of the victim into the limb
-	gi.G2API_CopyGhoul2Instance( ent->ghoul2, limb->ghoul2 );
+	gi.G2API_CopyGhoul2Instance( ent->ghoul2, limb->ghoul2, -1);
 	limb->playerModel = 0;//assumption!
 	limb->craniumBone = ent->craniumBone;
 	limb->cervicalBone = ent->cervicalBone;
@@ -1899,7 +1899,7 @@ static qboolean G_Dismember( gentity_t *ent, vec3_t point,
 		//play the proper dismember anim on the limb
 		gi.G2API_SetBoneAnim(&limb->ghoul2[limb->playerModel], 0, animations[limbAnim].firstFrame, 
 							animations[limbAnim].numFrames + animations[limbAnim].firstFrame,
-							BONE_ANIM_OVERRIDE_FREEZE, 1, cg.time );
+							BONE_ANIM_OVERRIDE_FREEZE, 1, cg.time, -1, -1);
 	}
 	if ( rotateBone )
 	{

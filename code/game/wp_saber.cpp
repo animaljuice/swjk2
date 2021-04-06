@@ -9,6 +9,7 @@
 #include "bg_local.h"			   
 #include "g_functions.h"
 #include "wp_saber.h"
+#include "../cgame/cg_local.h"
 
 #define MAX_SABER_VICTIMS 16
 static int		victimEntityNum[MAX_SABER_VICTIMS];
@@ -272,7 +273,7 @@ void G_CreateG2AttachedWeaponModel( gentity_t *ent, const char *psWeaponModel )
 		return;
 	}
 	// give us a sabre model
-	ent->weaponModel = gi.G2API_InitGhoul2Model(ent->ghoul2, weaponModel, G_ModelIndex( weaponModel ));
+	ent->weaponModel = gi.G2API_InitGhoul2Model(ent->ghoul2, weaponModel, G_ModelIndex( weaponModel ), NULL, NULL, 0, 0);
 	if ( ent->weaponModel != -1 )
 	{
 		// attach it to the hand
@@ -485,7 +486,7 @@ Ghoul2 Insert Start
 */
 			//FIXME: get saberModel from NPCs.cfg for NPCs?
 			saberent->s.modelindex = WP_SetSaberModel( ent->client, ent->client->NPC_class );
-			gi.G2API_InitGhoul2Model( saberent->ghoul2, ent->client->ps.saberModel, saberent->s.modelindex );
+			gi.G2API_InitGhoul2Model( saberent->ghoul2, ent->client->ps.saberModel, saberent->s.modelindex, NULL, NULL, 0, 0);
 			// set up a bolt on the end so we can get where the sabre muzzle is - we can assume this is always bolt 0
 			gi.G2API_AddBolt( &saberent->ghoul2[0], "*flash" );
 			//gi.G2API_SetLodBias( &saberent->ghoul2[0], 0 );
@@ -949,7 +950,8 @@ void WP_SaberDamageAdd( float trDmg, int trVictimEntityNum, vec3_t trDmgDir, vec
 	}
 	if ( trDmg )
 	{//did some damage to something
-		for ( int i = 0; i < numVictims; i++ )
+		int i = 0;
+		for ( ; i < numVictims; i++ )
 		{
 			if ( victimEntityNum[i] == trVictimEntityNum )
 			{//already hit this guy before

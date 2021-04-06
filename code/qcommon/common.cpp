@@ -257,7 +257,7 @@ void QDECL Com_Error( int code, const char *fmt, ... ) {
 		CL_Disconnect();
 		CL_FlushMemory();
 		CL_StartHunkUsers();
-		Com_Printf (S_COLOR_RED"********************\n"S_COLOR_MAGENTA"ERROR: %s\n"S_COLOR_RED"********************\n", com_errorMessage);
+		Com_Printf (S_COLOR_RED "********************\n" S_COLOR_MAGENTA "ERROR: %s\n" S_COLOR_RED "********************\n", com_errorMessage);
 		com_errorEntered = qfalse;
 		throw ("DROPPED\n");
 	} else if ( code == ERR_NEED_CD ) {
@@ -1569,7 +1569,7 @@ Com_PushEvent
 */
 void Com_PushEvent( sysEvent_t *event ) {
 	sysEvent_t		*ev;
-	static			printedWarning;
+	static qboolean printedWarning;
 
 	ev = &com_pushedEvents[ com_pushedEventsHead & (MAX_PUSHED_EVENTS-1) ];
 

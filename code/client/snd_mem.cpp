@@ -7,6 +7,7 @@
 
 #include "snd_local.h"
 #include "cl_mp3.h"
+#include <string>
 
 // Open AL
 void S_PreProcessLipSync(sfx_t *sfx);
@@ -292,7 +293,7 @@ int iFilesUpdated;
 int iErrors;
 qboolean qbForceRescan;
 qboolean qbForceStereo;
-string strErrors;
+std::string strErrors;
 
 void R_CheckMP3s( const char *psDir )
 {
