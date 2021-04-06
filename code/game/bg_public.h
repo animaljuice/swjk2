@@ -3,6 +3,7 @@
 // bg_public.h -- definitions shared by both the server game and client game modules
 #include "weapons.h"
 #include "g_items.h"
+#include "q_shared.h"
 #include "teams.h"
 #include "statindex.h"
 
@@ -132,7 +133,7 @@ typedef struct {
 	// callbacks to test the world
 	// these will be different functions during game and cgame
 	void		(*trace)( trace_t *results, const vec3_t start, const vec3_t mins, const vec3_t maxs, const vec3_t end, 
-						const int passEntityNum, const int contentMask, const EG2_Collision eG2TraceType = (EG2_Collision)0, const int useLod = 0 );
+						const int passEntityNum, const int contentMask, const EG2_Collision eG2TraceType, const int useLod);
 	int			(*pointcontents)( const vec3_t point, int passEntityNum );
 } pmove_t;
 

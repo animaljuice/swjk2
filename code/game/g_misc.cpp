@@ -1635,7 +1635,7 @@ void SP_misc_trip_mine( gentity_t *self )
 	AngleVectors( self->s.angles, forward, NULL, NULL );
 	VectorMA( self->s.origin, 128, forward, end );
 
-	gi.trace( &trace, self->s.origin, vec3_origin, vec3_origin, end, self->s.number, MASK_SHOT );
+	gi.trace( &trace, self->s.origin, vec3_origin, vec3_origin, end, self->s.number, MASK_SHOT, (EG2_Collision)0, 0);
 
 	if ( trace.allsolid || trace.startsolid )
 	{
@@ -1729,7 +1729,7 @@ void maglock_link( gentity_t *self )
 	VectorMA( self->s.origin, 128, forward, end );
 	VectorMA( self->s.origin, -4, forward, start );
 
-	gi.trace( &trace, start, vec3_origin, vec3_origin, end, self->s.number, MASK_SHOT );
+	gi.trace( &trace, start, vec3_origin, vec3_origin, end, self->s.number, MASK_SHOT, (EG2_Collision)0, 0);
 
 	if ( trace.allsolid || trace.startsolid )
 	{
@@ -2325,7 +2325,7 @@ void SP_misc_model_jabba_cam( gentity_t *ent )
 	// start extended..
 	if ( ent->spawnflags & 1 )
 	{
-		gi.G2API_SetBoneAnimIndex( &ent->ghoul2[ent->playerModel], ent->rootBone, 0, 15, BONE_ANIM_OVERRIDE_FREEZE, 0.6f, cg.time );
+		gi.G2API_SetBoneAnimIndex( &ent->ghoul2[ent->playerModel], ent->rootBone, 0, 15, BONE_ANIM_OVERRIDE_FREEZE, 0.6f, cg.time, -1, -1);
 	}
 
 	gi.linkentity( ent );

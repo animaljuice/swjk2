@@ -5,7 +5,7 @@
 #include "cg_media.h"
 #include "FxScheduler.h"
 #include "..\game\wp_saber.h"
-
+#include "..\game\g_local.h"
 #include "..\game\anims.h"
 
 #ifdef _IMMERSION
@@ -18,7 +18,6 @@
 //
 /////////////////////
 #endif // _IMMERSION
-
 
 extern void CG_LightningBolt( centity_t *cent, vec3_t origin );
 
@@ -1265,7 +1264,7 @@ void CG_AddViewWeapon( playerState_t *ps )
 				ct = 1;
 			}
 
-			for ( i = 0; i < ct; i++ )
+			for (int i = 0; i < ct; i++ )
 			{
 				theFxScheduler.PlayEffect( "repeater/muzzle_smoke", cent->currentState.clientNum );
 			}

@@ -1680,7 +1680,7 @@ static void CG_ScanForCrosshairEntity( qboolean scanAll )
 
 		//YES!  This is very very bad... but it works!  James made me do it.  Really, he did.  Blame James.
 		gi.trace( &trace, start, vec3_origin, vec3_origin, end, 
-			ignoreEnt, MASK_OPAQUE|CONTENTS_SHOTCLIP|CONTENTS_BODY|CONTENTS_ITEM, G2_NOCOLLIDE, 10 );// ); took out CONTENTS_SOLID| so you can target people through glass.... took out CONTENTS_CORPSE so disintegrated guys aren't shown, could just remove their body earlier too...
+			ignoreEnt, MASK_OPAQUE|CONTENTS_SHOTCLIP|CONTENTS_BODY|CONTENTS_ITEM, G2_NOCOLLIDE, 10);// ); took out CONTENTS_SOLID| so you can target people through glass.... took out CONTENTS_CORPSE so disintegrated guys aren't shown, could just remove their body earlier too...
 
 		if ( trace.entityNum < ENTITYNUM_WORLD )
 		{//hit something

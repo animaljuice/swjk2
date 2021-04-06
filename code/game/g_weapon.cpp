@@ -241,7 +241,7 @@ static void WP_TraceSetStart( const gentity_t *ent, vec3_t start, const vec3_t m
 	VectorCopy( ent->currentOrigin, newstart );
 	newstart[2] = start[2]; // force newstart to be on the same plane as the muzzle ( start )
 
-	gi.trace( &tr, newstart, entMins, entMaxs, start, ent->s.number, MASK_SOLID|CONTENTS_SHOTCLIP );
+	gi.trace( &tr, newstart, entMins, entMaxs, start, ent->s.number, MASK_SOLID|CONTENTS_SHOTCLIP, (EG2_Collision)0, 0);
 
 	if ( tr.startsolid || tr.allsolid )
 	{
@@ -2562,7 +2562,7 @@ qboolean WP_LobFire( gentity_t *self, vec3_t start, vec3_t target, vec3_t mins, 
 					elapsedTime = floor( travelTime );
 				}
 				EvaluateTrajectory( &tr, level.time + elapsedTime, testPos );
-				gi.trace( &trace, lastPos, mins, maxs, testPos, ignoreEntNum, clipmask );
+				gi.trace( &trace, lastPos, mins, maxs, testPos, ignoreEntNum, clipmask, (EG2_Collision)0, 0);
 
 				if ( trace.allsolid || trace.startsolid )
 				{
@@ -3041,7 +3041,7 @@ void WP_FireStunBaton( gentity_t *ent, qboolean alt_fire )
 	VectorSet( maxs, 5, 5, 5 );
 	VectorScale( maxs, -1, mins );
 
-	gi.trace ( &tr, start, mins, maxs, end, ent->s.number, CONTENTS_SOLID|CONTENTS_BODY|CONTENTS_SHOTCLIP );
+	gi.trace ( &tr, start, mins, maxs, end, ent->s.number, CONTENTS_SOLID|CONTENTS_BODY|CONTENTS_SHOTCLIP, (EG2_Collision)0, 0);
 
 	if ( tr.entityNum >= ENTITYNUM_WORLD || tr.entityNum < 0 )
 	{
@@ -3082,7 +3082,7 @@ void WP_Melee( gentity_t *ent )
 	VectorSet( maxs, 6, 6, 6 );
 	VectorScale( maxs, -1, mins );
 
-	gi.trace ( &tr, muzzle, mins, maxs, end, ent->s.number, MASK_SHOT );
+	gi.trace ( &tr, muzzle, mins, maxs, end, ent->s.number, MASK_SHOT, (EG2_Collision)0, 0);
 
 	if ( tr.entityNum >= ENTITYNUM_WORLD )
 	{
@@ -3892,7 +3892,7 @@ void emplaced_gun_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacke
 	ugly[YAW] = 4;
 	ugly[PITCH] = self->lastAngles[PITCH] * 0.8f + crandom() * 6;
 	ugly[ROLL] = crandom() * 7;
-	gi.G2API_SetBoneAnglesIndex( &self->ghoul2[self->playerModel], self->lowerLumbarBone, ugly, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL ); 
+	gi.G2API_SetBoneAnglesIndex( &self->ghoul2[self->playerModel], self->lowerLumbarBone, ugly, BONE_ANGLES_POSTMULT, POSITIVE_Y, POSITIVE_Z, POSITIVE_X, NULL, 0, 0);
 
 	VectorCopy( self->currentOrigin,  org );
 	org[2] += 20;

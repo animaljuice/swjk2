@@ -12,6 +12,7 @@
 #include "cl_mp3.h"
 //
 #include "snd_music.h"
+#include <string>
 
 extern qboolean S_FileExists( const char *psFilename );
 					
@@ -926,7 +927,7 @@ qboolean Music_AllowedToTransition( float			fPlayingTimeElapsed,
 			itp.second++;	// increase range to one beyond, so we can do normal STL being/end looping below
 		for (MusicExitTimes_t::iterator it = itp.first; it != itp.second; ++it)
 		{
-			MusicExitTime_t *pExitTime = it;
+			auto pExitTime = it;
 			
 			if ( fabs(pExitTime->fTime - fPlayingTimeElapsed) <= fTimeEpsilon )
 			{

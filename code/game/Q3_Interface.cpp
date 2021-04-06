@@ -6158,7 +6158,7 @@ void InflateOwner( gentity_t *self )
 
 	trace_t	trace;
 
-	gi.trace( &trace, self->currentOrigin, self->mins, self->maxs, self->currentOrigin, self->owner->s.number, self->owner->clipmask&~(CONTENTS_SOLID|CONTENTS_MONSTERCLIP) );
+	gi.trace( &trace, self->currentOrigin, self->mins, self->maxs, self->currentOrigin, self->owner->s.number, self->owner->clipmask&~(CONTENTS_SOLID|CONTENTS_MONSTERCLIP), (EG2_Collision)0, 0);
 	if ( trace.allsolid || trace.startsolid )
 	{
 		self->e_ThinkFunc = thinkF_InflateOwner;
