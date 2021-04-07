@@ -48,7 +48,7 @@ public:
 #endif
 };
 
-class ChannelIterator : public multimapIterator<FFChannelSet::Channel>
+class ChannelIterator : public multimapIterator<typename FFChannelSet::Channel>
 {
 public:
 	ChannelIterator( FFChannelSet::Channel &map, int channel )

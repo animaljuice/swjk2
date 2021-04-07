@@ -2,9 +2,6 @@
 #define FF_UTILS_H
 
 //#include "ff_public.h"
-#include "ff_local.h"
-#include <vector>
-#include <string>
 
 template<typename Type>
 inline Type Clamp( Type arg, Type min, Type max )
@@ -41,7 +38,7 @@ inline Type InRange( Type arg, Type min, Type max, Type invalid )
 	return arg;
 }
 
-typedef std::vector<std::string> TNameTable;
+typedef vector<string> TNameTable;
 
 int _rcpos( const char* string, char c, int pos = -1 );
 void* LoadFile( const char *filename );
