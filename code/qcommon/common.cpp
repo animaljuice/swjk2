@@ -10,7 +10,7 @@
 #endif
 
 
-#define	MAXPRINTMSG	4096
+#define	MAXPRINTMSG	16384
 
 #define MAX_NUM_ARGVS	50
 
